@@ -1,0 +1,185 @@
+[
+  {
+    "id": 1,
+    "name": "RAF Fan qızdırıcı 3000W — Model R.1407",
+    "code": "EL-HT001",
+    "category": "heaters",
+    "price": 49.99,
+    "currency": "AZN",
+    "stock": 3,
+    "visible": true,
+    "image": "/static/images/RAF qizdirici main.png",
+    "images": [
+      "/static/images/raf fan dayan.png",
+      "/static/images/raf fan guc.png",
+      "/static/images/Raf fan ust.png",
+      "/static/images/raf fan.png"
+    ],
+    "description": "RAF R.1407 3000W fan qızdırıcı geniş məkanların daha sürətli isidilməsi üçün nəzərdə tutulmuş güclü elektrik qızdırıcıdır. Qaraj, usta otağı, anbar və böyük iş sahələrində qısa müddətdə istilik yaratmaq üçün uyğundur. Stendli konstruksiyası cihazın sabit yerləşdirilməsinə imkan verir və istiliyi istədiyiniz istiqamətə yönəltməyə kömək edir. Adjustable thermostat sayəsində temperaturu rahat tənzimləmək mümkündür. Overheating protection sistemi təhlükəsiz istifadəni təmin edir. Aşağı səs səviyyəsi isə həm evdə, həm də iş mühitində komfort yaradır.",
+    "specifications": [
+      { "label": "Brend", "value": "RAF" },
+      { "label": "Model", "value": "R.1407" },
+      { "label": "Məhsul tipi", "value": "Fan qızdırıcı" },
+      { "label": "Güc", "value": "3000W" },
+      { "label": "Termostat", "value": "Var (Adjustable thermostat)" },
+      { "label": "Təhlükəsizlik", "value": "Qızmadan qorunma (Overheating protection)" },
+      { "label": "Səs səviyyəsi", "value": "Aşağı səs (Low noise)" },
+      { "label": "Zəmanət", "value": "1 il" }
+    ],
+    "seo": {
+      "en": [
+        "industrial space heater",
+        "portable electric heater",
+        "high power heater",
+        "workshop heater",
+        "garage heater",
+        "fast heating device",
+        "adjustable thermostat heater",
+        "overheating safety",
+        "low noise heater"
+      ],
+      "az": [
+        "sənaye qızdırıcı",
+        "usta otağı üçün qızdırıcı",
+        "qaraj üçün qızdırıcı",
+        "anbar üçün qızdırıcı",
+        "portativ qızdırıcı",
+        "sürətli isinmə",
+        "termostatlı qızdırıcı",
+        "təhlükəsiz qızdırıcı",
+        "səssiz işləmə"
+      ],
+      "ru": [
+        "промышленный обогреватель",
+        "тепловентилятор для гаража",
+        "обогреватель для мастерской",
+        "обогреватель для склада",
+        "переносной обогреватель",
+        "быстрый нагрев",
+        "термостат",
+        "защита от перегрева",
+        "малошумный обогреватель"
+      ]
+    }
+  },
+
+  {
+    "id": 2,
+    "name": "Xiaomi TV Box S (3-cü nəsil) — 4K Ultra-HD (Google TV)",
+    "code": "EL-TVB002",
+    "category": "tv-box",
+    "price": 149.99,
+    "currency": "AZN",
+    "stock": 18,
+    "visible": true,
+    "image": "/static/images/xiaotv0.png",
+    "images": [
+      "/static/images/xiaotv1.png",
+      "/static/images/xiaotv2.png"
+    ],
+    "description": "Xiaomi TV Box S adi televizoru daha funksional smart sistemə çevirir. Google TV platforması üzərindən film və serial izləmək, tətbiqlərdən istifadə etmək və media kontentə rahat çıxış mümkündür. Pult üzərində səsli idarəetmə düyməsi axtarış və naviqasiyanı sürətləndirir. 4K Ultra-HD dəstəyi uyğun kontent olduqda yüksək keyfiyyətli görüntü təqdim edir. Ev istifadəsi üçün kompakt, səliqəli və rahat quraşdırılan media həllidir.",
+    "specifications": [
+      { "label": "Brend", "value": "Xiaomi" },
+      { "label": "Məhsul tipi", "value": "Media pleyer" },
+      { "label": "Nəsil", "value": "3-cü nəsil" },
+      { "label": "Platforma", "value": "Google TV" },
+      { "label": "Görüntü keyfiyyəti", "value": "4K Ultra-HD" },
+      { "label": "İdarəetmə", "value": "Pult" },
+      { "label": "Səsli idarəetmə", "value": "Var (Voice control)" },
+      { "label": "Zəmanət", "value": "1 il" }
+    ],
+    "seo": {
+      "en": [
+        "streaming media player",
+        "smart tv upgrade device",
+        "voice remote",
+        "home entertainment streamer",
+        "ultra hd media device",
+        "cast to tv feature",
+        "compact tv streamer",
+        "living room streaming setup",
+        "easy tv streaming"
+      ],
+      "az": [
+        "smart televizor əlavəsi",
+        "internetlə kontent izləmə",
+        "səsli pult",
+        "ev əyləncə pleyeri",
+        "yüksək keyfiyyət görüntü",
+        "televizora yayımlama funksiyası",
+        "kompakt media qurğusu",
+        "rahat quraşdırma",
+        "onlayn serial film izləmə"
+      ],
+      "ru": [
+        "медиаплеер для телевизора",
+        "устройство для смарт тв",
+        "голосовой пульт",
+        "стриминг для дома",
+        "ультра hd воспроизведение",
+        "функция трансляции на телевизор",
+        "компактная медиаприставка",
+        "простая настройка",
+        "онлайн фильмы и сериалы"
+      ]
+    }
+  },
+
+  {
+    "id": 3,
+    "name": "Mini simsiz klaviatura + touchpad (Backlit) — Mini Keyboard",
+    "code": "EL-ACC003",
+    "category": "accessories",
+    "price": 13.99,
+    "currency": "AZN",
+    "stock": 35,
+    "visible": true,
+    "image": "/static/images/kb0.png",
+    "images": [
+      "/static/images/kb1.png"
+    ],
+    "description": "Bu mini simsiz klaviatura TV Box, Smart TV və PC üçün rahat uzaqdan idarəetmə imkanı yaradır. Daxili touchpad kursor idarəsini sürətləndirir, backlit düymələr isə qaranlıq mühitdə istifadəyə imkan verir. Multimedia düymələri video izləyərkən əsas funksiyalara tez çıxış yaradır. Touchpad həssaslığı tənzimlənə bilir və kompakt ölçüsü sayəsində ev və ofis istifadəsi üçün idealdır.",
+    "specifications": [
+      { "label": "Məhsul tipi", "value": "Simsiz mini klaviatura + mouse" },
+      { "label": "İşıqlandırma", "value": "Backlit" },
+      { "label": "İdarəetmə", "value": "Touchpad" },
+      { "label": "Funksiya", "value": "Multimedia idarəetmə" },
+      { "label": "Touchpad həssaslığı", "value": "Tənzimlənən (DPI adjustable)" },
+      { "label": "Zəmanət", "value": "6 ay" }
+    ],
+    "seo": {
+      "en": [
+        "wireless mini keyboard",
+        "backlit keyboard",
+        "touchpad remote",
+        "wireless keyboard mouse combo",
+        "media center remote",
+        "smart tv keyboard remote",
+        "usb receiver keyboard",
+        "compact wireless controller",
+        "dpi adjustable touchpad"
+      ],
+      "az": [
+        "simsiz mini klaviatura",
+        "arxa işıqlı klaviatura",
+        "touchpad pult",
+        "tv box üçün klaviatura",
+        "smart tv üçün klaviatura pultu",
+        "multimedia düyməli pult",
+        "kompakt idarəetmə qurğusu",
+        "usb qəbuledicili klaviatura"
+      ],
+      "ru": [
+        "мини беспроводная клавиатура",
+        "клавиатура с подсветкой",
+        "пульт с тачпадом",
+        "беспроводная клавиатура мышь",
+        "клавиатура для смарт тв",
+        "клавиатура для тв приставки",
+        "мультимедийный пульт",
+        "компактный контроллер",
+        "тачпад с регулировкой dpi"
+      ]
+    }
+  }
+]
