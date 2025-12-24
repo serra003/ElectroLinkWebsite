@@ -3,10 +3,13 @@ import json
 import os
 from datetime import datetime
 
-# Initialize Flask app with explicit folder paths
+# Get the parent directory (where HTML files are located)
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Initialize Flask app - templates in parent directory, static in backend-files
 app = Flask(__name__, 
-            template_folder='templates',
-            static_folder='static')
+            template_folder=parent_dir,  # ← HTML files in parent directory
+            static_folder='static')  # ← Static files in backend-files/static
 
 # Configuration
 app.config['SECRET_KEY'] = 'your-secret-key-change-in-production'
@@ -235,13 +238,6 @@ def get_translations():
         'available_languages': list(translations.keys())
     }), 404
 
-# -------------------- Static File Serving --------------------
-
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    """Serve static files (images, etc.)"""
-    return send_from_directory('static', filename)
-
 # -------------------- Error Handlers --------------------
 
 @app.errorhandler(404)
@@ -290,10 +286,11 @@ if __name__ == '__main__':
     os.makedirs('data', exist_ok=True)
     os.makedirs('static', exist_ok=True)
     os.makedirs('static/images', exist_ok=True)
-    os.makedirs('templates', exist_ok=True)
     
     # Run the Flask development server
     print("Starting ElectroLink.az Flask Server...")
+    print(f"Template folder: {parent_dir}")
+    print(f"Static folder: {os.path.join(os.path.dirname(__file__), 'static')}")
     print("Server running at: http://localhost:5000")
     print("Press CTRL+C to stop the server")
     
