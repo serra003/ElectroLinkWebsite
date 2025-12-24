@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Səbət - ElectroLink.az</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066FF',
+            secondary: '#FF6B35',
+            navyDark: '#0A1628',
+            navyBox: '#1A2942',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    
+    .cart-item {
+      transition: all 0.3s ease;
+    }
+    
+    .cart-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .dark .cart-item:hover {
+      background: #1e3a5f;
+    }
+    
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #FF6B35;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .empty-cart-animation {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-navyDark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Header/Navbar -->
+  <nav class="bg-white dark:bg-navyBox shadow-md sticky top-0 z-50 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        
+        <div class="flex items-center">
+          <a href="/">
+            <img id="logoImage" src="/static/images/logo.png" alt="ElectroLink" class="h-16 w-auto">
+          </a>
+        </div>
+
+        <div class="hidden md:flex space-x-8 text-lg">
+          <a href="/products" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Məhsullar</a>
+          <a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Əlaqə</a>
+          <a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Haqqımızda</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+            <i id="themeIcon" class="fas fa-moon text-2xl text-gray-700 dark:text-gray-300"></i>
+          </button>
+          
+          <a href="/cart" class="relative">
+            <i class="fas fa-shopping-cart text-3xl text-gray-700 dark:text-gray-300 hover:text-primary transition"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </a>
+          
+          <button id="mobileMenuBtn" class="md:hidden text-gray-700 dark:text-gray-300">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t bg-white dark:bg-navyBox border-gray-200 dark:border-gray-700">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/products" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium text-lg py-2">Məhsullar</a>
+        <a href="/contact" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium text-lg py-2">Əlaqə</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 dark:bg-navyBox py-4 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center space-x-2 text-sm">
+        <a href="/" class="text-gray-600 dark:text-gray-400 hover:text-primary">Ana Səhifə</a>
+        <i class="fas fa-chevron-right text-xs text-gray-400"></i>
+        <span class="text-gray-900 dark:text-white">Səbət</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Section -->
+  <section class="py-12 px-4 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      
+      <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+        <i class="fas fa-shopping-cart text-primary mr-3"></i>Səbətim
+      </h1>
+
+      <div id="cartContent">
+        <!-- Cart items will be loaded here -->
+      </div>
+
+      <!-- Empty Cart Message (hidden by default) -->
+      <div id="emptyCart" class="hidden empty-cart-animation text-center py-20">
+        <i class="fas fa-shopping-cart text-gray-300 dark:text-gray-600 text-9xl mb-8"></i>
+        <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Səbətiniz Boşdur</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">Məhsul əlavə etmək üçün kataloqu ziyarət edin</p>
+        <a href="/products" class="inline-block bg-gradient-to-r from-primary to-blue-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:shadow-2xl transform hover:scale-105 transition">
+          <i class="fas fa-arrow-left mr-2"></i>Məhsullara Keç
+        </a>
+      </div>
+
+      <!-- Cart Summary (shown when cart has items) -->
+      <div id="cartSummary" class="hidden">
+        <div class="grid lg:grid-cols-3 gap-8 mt-8">
+          
+          <!-- Cart Items -->
+          <div class="lg:col-span-2">
+            <div class="bg-white dark:bg-navyBox rounded-3xl shadow-lg p-6">
+              <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Məhsullar (<span id="itemCount">0</span>)</h2>
+              <div id="cartItems" class="space-y-4">
+                <!-- Cart items will be rendered here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="lg:col-span-1">
+            <div class="bg-gradient-to-br from-primary to-blue-600 text-white rounded-3xl shadow-2xl p-8 sticky top-24">
+              <h2 class="text-3xl font-bold mb-6">Sifariş Xülasəsi</h2>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex justify-between text-lg">
+                  <span>Məhsullar:</span>
+                  <span id="subtotal" class="font-bold">0 AZN</span>
+                </div>
+                <div class="flex justify-between text-lg">
+                  <span>Çatdırılma:</span>
+                  <span class="font-bold text-green-300">Pulsuz</span>
+                </div>
+                <div class="border-t border-white/30 pt-4">
+                  <div class="flex justify-between text-2xl font-bold">
+                    <span>Toplam:</span>
+                    <span id="total">0 AZN</span>
+                  </div>
+                </div>
+              </div>
+
+              <button onclick="orderViaWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white py-5 rounded-2xl text-xl font-bold mb-4 transition transform hover:scale-105 shadow-xl">
+                <i class="fab fa-whatsapp text-2xl mr-2"></i>
+                WhatsApp İlə Sifariş
+              </button>
+
+              <a href="/products" class="block text-center text-white hover:text-gray-200 font-semibold">
+                <i class="fas fa-arrow-left mr-2"></i>Alış-verişə Davam Et
+              </a>
+
+              <div class="mt-8 pt-6 border-t border-white/30">
+                <div class="flex items-start space-x-3 mb-4">
+                  <i class="fas fa-shield-alt text-2xl mt-1"></i>
+                  <div>
+                    <p class="font-bold">Təhlükəsiz Ödəniş</p>
+                    <p class="text-sm text-white/80">Məlumatlarınız qorunur</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-truck text-2xl mt-1"></i>
+                  <div>
+                    <p class="font-bold">Sürətli Çatdırılma</p>
+                    <p class="text-sm text-white/80">1-2 iş günü ərzində</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 px-4 mt-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Əlaqə</h3>
+          <p class="mb-2"><i class="fas fa-phone mr-2"></i> +994 10 505 16 15</p>
+          <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Bakı, Azərbaycan</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">İş Saatları</h3>
+          <p>B.e - Cümə: 09:00 - 18:00</p>
+          <p>Şənbə: 10:00 - 16:00</p>
+          <p>Bazar: Bağlı</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Menyular</h3>
+          <ul class="space-y-2">
+            <li><a href="/warranty" class="hover:text-primary">Zəmanət və Qaytarma</a></li>
+            <li><a href="/faq" class="hover:text-primary">Tez-tez Verilən Suallar</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- Footer Social Links -->
+<div class="flex space-x-4 text-3xl">
+  <a href="https://www.instagram.com/electrolink.az/" class="hover:text-primary"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@electrolink.az" class="hover:text-primary"><i class="fab fa-tiktok"></i></a>
+  <a href="https://wa.me/994105051615" class="hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/994105051615" target="_blank" class="whatsapp-float">
+  <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition">
+    <i class="fab fa-whatsapp text-4xl"></i>
+  </div>
+</a>
+
+      </div>
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="mb-2">© 2024 ElectroLink.az - Bütün hüquqlar qorunur</p>
+        <p class="text-sm text-gray-400">VÖEN: 1234567890</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/994105051615" target="_blank" class="whatsapp-float">
+    <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition">
+      <i class="fab fa-whatsapp text-4xl"></i>
+    </div>
+  </a>
+
+  <script>
+    // Theme management
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const logoImage = document.getElementById('logoImage');
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        themeIcon.className = 'fas fa-sun text-2xl text-yellow-400';
+        logoImage.src = '../static/images/actual logo.png';
+      } else {
+        root.classList.remove('dark');
+        themeIcon.className = 'fas fa-moon text-2xl text-gray-700';
+        logoImage.src = '../static/images/Screenshot 2025-12-12 200551.png';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    // Cart management
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    function updateCartDisplay() {
+      const cartCount = document.getElementById('cartCount');
+      const emptyCart = document.getElementById('emptyCart');
+      const cartSummary = document.getElementById('cartSummary');
+      const cartItems = document.getElementById('cartItems');
+      const itemCount = document.getElementById('itemCount');
+      
+      cartCount.textContent = cart.length;
+      
+      if (cart.length === 0) {
+        emptyCart.classList.remove('hidden');
+        cartSummary.classList.add('hidden');
+        return;
+      }
+      
+      emptyCart.classList.add('hidden');
+      cartSummary.classList.remove('hidden');
+      
+      // Group items by product
+      const groupedCart = {};
+      cart.forEach(item => {
+        if (!groupedCart[item.id]) {
+          groupedCart[item.id] = { ...item, quantity: 0 };
+        }
+        groupedCart[item.id].quantity++;
+      });
+      
+      itemCount.textContent = Object.keys(groupedCart).length;
+      
+      // Render cart items
+      cartItems.innerHTML = Object.values(groupedCart).map((item, index) => `
+        <div class="cart-item flex items-center gap-4 p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-700">
+          <img src="${item.image || 'https://via.placeholder.com/100'}" alt="${item.name}" class="w-24 h-24 rounded-xl object-cover">
+          
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">${item.name}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Kod: ${item.code}</p>
+            <p class="text-xl font-bold text-primary">${item.price} AZN</p>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <div class="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-lg">
+              <button onclick="decreaseQty(${item.id})" class="px-3 py-1 text-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">−</button>
+              <span class="px-4 text-lg font-bold text-gray-900 dark:text-white">${item.quantity}</span>
+              <button onclick="increaseQty(${item.id})" class="px-3 py-1 text-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">+</button>
+            </div>
+            
+            <button onclick="removeItem(${item.id})" class="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+              <i class="fas fa-trash text-xl"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      
+      // Update totals
+      const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} AZN`;
+      document.getElementById('total').textContent = `${subtotal.toFixed(2)} AZN`;
+    }
+
+    function increaseQty(productId) {
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        cart.push({ ...item });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+      }
+    }
+
+    function decreaseQty(productId) {
+      const index = cart.findIndex(i => i.id === productId);
+      if (index !== -1) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+      }
+    }
+
+    function removeItem(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartDisplay();
+    }
+
+    function orderViaWhatsApp() {
+      if (cart.length === 0) return;
+      
+      // Group items by product
+      const groupedCart = {};
+      cart.forEach(item => {
+        if (!groupedCart[item.id]) {
+          groupedCart[item.id] = { ...item, quantity: 0 };
+        }
+        groupedCart[item.id].quantity++;
+      });
+      
+      let message = "Salam! Səbətimdə aşağıdakı məhsullar var:\n\n";
+      
+      Object.values(groupedCart).forEach(item => {
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        message += `${item.code} – ${item.name} – ${item.quantity} ədəd – ${itemTotal} AZN\n`;
+      });
+      
+      const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+      message += `\nToplam: ${total} AZN`;
+      
+      const whatsappUrl = `https://wa.me/994105051615?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Mobile menu
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // Initialize
+    updateCartDisplay();
+  </script>
+
+</body>
+</html>
