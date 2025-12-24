@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tez-tez Verilən Suallar - ElectroLink.az</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066FF',
+            secondary: '#FF6B35',
+            navyDark: '#0A1628',
+            navyBox: '#1A2942',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #FF6B35;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-navyDark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Header/Navbar -->
+  <nav class="bg-white dark:bg-navyBox shadow-md sticky top-0 z-50 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        
+        <div class="flex items-center">
+          <a href="/">
+            <img id="logoImage" src="/static/images/Screenshot 2025-12-12 200551.png" alt="ElectroLink" class="h-16 w-auto">
+          </a>
+        </div>
+
+        <div class="hidden md:flex space-x-8 text-lg">
+          <a href="/products" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Məhsullar</a>
+          <a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Haqqımızda</a>
+          <a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-primary font-medium transition">Əlaqə</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+            <i id="themeIcon" class="fas fa-moon text-2xl text-gray-700 dark:text-gray-300"></i>
+          </button>
+          
+          <a href="/cart" class="relative">
+            <i class="fas fa-shopping-cart text-3xl text-gray-700 dark:text-gray-300 hover:text-primary transition"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </a>
+          
+          <button id="mobileMenuBtn" class="md:hidden text-gray-700 dark:text-gray-300">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t bg-white dark:bg-navyBox border-gray-200 dark:border-gray-700">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/products" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium text-lg py-2">Məhsullar</a>
+        <a href="/about" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium text-lg py-2">Haqqımızda</a>
+        <a href="/contact" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium text-lg py-2">Əlaqə</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-16 px-4 bg-gradient-to-br from-blue-50 to-white dark:from-navyDark dark:to-navyBox">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        Tez-tez Verilən Suallar
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300">
+        Ən çox verilən sualların cavabları
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="py-12 px-4 bg-white dark:bg-navyDark">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Sifariş -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Sifariş</h2>
+        
+        <div class="space-y-3">
+          
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Necə sifariş verə bilərəm?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Məhsulu seçin və "İndi Sifariş Et" düyməsinə basın. WhatsApp-a avtomatik yönləndiriləcəksiniz və sifarişinizi təsdiq edə bilərsiniz.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Onlayn ödəniş edə bilərəmmi?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Xeyr, onlayn ödəniş xidmətimiz yoxdur. Ödəniş çatdırılma zamanı nağd və ya kartla edilir.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Minimum sifariş məbləği varmı?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Xeyr, minimum məbləğ yoxdur. İstənilən qiymətdə məhsul sifariş edə bilərsiniz.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Çatdırılma -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Çatdırılma</h2>
+        
+        <div class="space-y-3">
+          
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Çatdırılma nə qədər çəkir?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Bakı şəhərində 1-2 iş günü, regionlarda 2-4 iş günü.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Çatdırılma pulsuzdurmu?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Bəli, Bakı şəhəri daxilində çatdırılma tamamilə pulsuzdur.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Zəmanət -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Zəmanət və Qaytarma</h2>
+        
+        <div class="space-y-3">
+          
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Zəmanət müddəti nə qədərdir?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Bütün məhsullarımıza 12 aylıq rəsmi zəmanət verilir.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Məhsulu qaytara bilərəmmi?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Bəli, açılmamış və istifadə edilməmiş məhsullar 14 gün ərzində qaytarıla bilər.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Ətraflı zəmanət şərtləri harada?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Ətraflı məlumat üçün <a href="/warranty" class="text-primary font-bold hover:underline">Zəmanət və Qaytarma</a> səhifəsinə baxın.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Texniki Dəstək -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Texniki Dəstək</h2>
+        
+        <div class="space-y-3">
+          
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">TV Box quraşdırılması pulsuzdurmu?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  Bəli, TV Box məhsulları üçün quraşdırma xidməti tamamilə pulsuzdur.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-gray-50 dark:bg-navyBox rounded-xl overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              <span class="font-bold text-gray-900 dark:text-white pr-4">Problem olduqda kiminlə əlaqə saxlamalıyam?</span>
+              <i class="fas fa-chevron-down faq-icon text-primary text-lg flex-shrink-0"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="px-5 pb-5">
+                <p class="text-gray-600 dark:text-gray-300">
+                  WhatsApp: +994 10 505 16 15. Komandamız sizə kömək etməyə hazırdır.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="py-12 px-4 bg-primary">
+    <div class="max-w-3xl mx-auto text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Hələ də Sualınız Var?</h2>
+      <p class="text-lg mb-6">Bizimlə əlaqə saxlayın!</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">
+          Əlaqə Formu
+        </a>
+        <a href="https://wa.me/994105051615" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition">
+          <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Əlaqə</h3>
+          <p class="mb-2"><i class="fas fa-phone mr-2"></i> +994 10 505 16 15</p>
+          <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Bakı, Azərbaycan</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">İş Saatları</h3>
+          <p>B.e - Cümə: 09:00 - 18:00</p>
+          <p>Şənbə: 10:00 - 16:00</p>
+          <p>Bazar: Bağlı</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Menyular</h3>
+          <ul class="space-y-2">
+            <li><a href="/warranty" class="hover:text-primary">Zəmanət və Qaytarma</a></li>
+            <li><a href="/faq" class="hover:text-primary">Tez-tez Verilən Suallar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Sosial Şəbəkələr</h3>
+          <div class="flex space-x-4 text-3xl">
+            <a href="https://www.instagram.com/electrolink.az/" target="_blank" class="hover:text-primary"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@electrolink.az" target="_blank" class="hover:text-primary"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/994105051615" target="_blank" class="hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="mb-2">© 2024 ElectroLink.az - Bütün hüquqlar qorunur</p>
+        <p class="text-sm text-gray-400">VÖEN: 1234567890</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/994105051615" target="_blank" class="whatsapp-float">
+    <div class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition">
+      <i class="fab fa-whatsapp text-4xl"></i>
+    </div>
+  </a>
+
+  <script>
+    // Theme management
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const logoImage = document.getElementById('logoImage');
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        themeIcon.className = 'fas fa-sun text-2xl text-yellow-400';
+        logoImage.src = '/static/images/actual logo.png';
+      } else {
+        root.classList.remove('dark');
+        themeIcon.className = 'fas fa-moon text-2xl text-gray-700';
+        logoImage.src = '/static/images/Screenshot 2025-12-12 200551.png';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    // Cart count
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cartCount').textContent = cart.length;
+
+    // FAQ Toggle
+    function toggleFaq(button) {
+      const faqItem = button.closest('.faq-item');
+      const allItems = document.querySelectorAll('.faq-item');
+      
+      allItems.forEach(item => {
+        if (item !== faqItem) {
+          item.classList.remove('active');
+        }
+      });
+      
+      faqItem.classList.toggle('active');
+    }
+
+    // Mobile menu
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
